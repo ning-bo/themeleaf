@@ -1,0 +1,27 @@
+spring:
+  datasource:    #连接数据库
+    url: jdbc:mysql://101.200.40.203:3306/test?characterEncoding=utf8
+    deiverClassName: com.mysql.jdbc.Driver
+    userName: root     #userName   'N'必须大写
+    password: 123456
+
+
+
+
+  jpa:        # 持久层spring data jpa
+    database: Mysql
+    show-sql: true  #控制台输出语句
+    hibernate:
+      ddl-auto: update
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+
+  thymeleaf:
+    thymeleaf:
+      prefix: classpath:/templates/
+      suffix: .html
+      mode: HTML5
+      encoding: UTF-8
+      content-type: text/html; charset=utf-8
+      cache: true
+
+

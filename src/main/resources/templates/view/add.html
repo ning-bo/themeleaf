@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>...</title>
+<%-- bootstrop --%>
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <script src="../js/jquery-2.1.4.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+
+<%-- ueditor --%>
+    <script type="text/javascript" charset="utf-8" src="../ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../ueditor/ueditor.all.min.js"> </script>
+    <script type="text/javascript" charset="utf-8" src="../ueditor/ueditor.all.js"> </script>
+    <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+    <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+    <script type="text/javascript" charset="utf-8" src="../ueditor/lang/zh-cn/zh-cn.js"></script>
+
+<%-- index --%>
+    <link href="../css/index.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="../js/modernizr.js"></script>
+    <![endif]-->
+</head>
+<style>
+    .divBorder{
+        background-color: #dedef8;
+        box-shadow: inset 0px -1px 0px #444, inset -1px 1px 1px #444;
+        padding: 0;
+    }
+    .inputwor{
+        width: 100%;
+        height: 100%;
+        border-width: 0px;
+        font-size: 20px;
+        line-height: 100%;
+    }
+    .xleft{
+        text-align: right;
+        height: 100%;
+        line-height: 100%;
+        padding: 0;
+        background-color: #226039;
+        color: #6f42c1;
+    }
+    .xright{
+        padding: 0;
+        height: 100%;
+    }
+
+</style>
+<body>
+    <div class="topnav">
+        还有 <a href="http://www.yangqq.com" target="_blank">nign</a>
+    </div>
+    <header>
+        <div class="quotes">
+            <p>初遇时，她的微笑，她往日的深情、承诺和傻劲，两个人共度的美丽时刻，一一印在回忆里，今天的感情已经比不上从前，但是我爱着恋着往日的她，舍不得离开。</p>
+            <div class="text5">记录・回忆123</div>
+            <div class="flower"><img src="../images/flower.jpg"></div>
+        </div>
+        <!--nav begin-->
+        <div id="nav">
+            <ul>
+                <li><a href="/"> </a></li>
+            </ul>
+        </div>
+        <!--nav end-->
+    </header>
+
+    <div class="container">
+      <form method="post" enctype="multipart/form-data">
+        <h1>怀念啊，我们的青春啊！</h1>
+        <div class="row" >
+            <div class="col-md-1 col-md-offset-2"></div>
+            <div class="col-md-8 col-md-offset-3 row divBorder" style="height: 40px">
+                <div class="col-md-3 xleft"><h2>标题：</h2></div>
+                <div class="col-md-9 xright"><input type="text" name="title" class="inputwor divBorder" placeholder="请填写标题"></div>
+            </div>
+        </div>
+
+        <div class="row" style="margin-top: 50px">
+            <div class="col-md-1 col-md-offset-2"></div>
+            <div class="col-md-8 col-md-offset-3 row divBorder" style="height: 40px;background-color: #226039;">
+                <div class="col-md-3 xleft"><h2>标题图片：</h2></div>
+                <input type="file" name="titlePic" onchange="preview(this)"/>
+
+            </div>
+        </div>
+        <img class="preview" style="width:150px;" src="<?=IMG_URL.$cost['cover'].'_s.jpg';?>">
+        <script>
+            function preview(file){
+                var prevDiv = document.getElementById('preview');
+                if (file.files && file.files[0]){
+                    var reader = new FileReader();
+                    reader.onload = function(evt){
+                        // prevDiv.innerHTML = '<img width="100%" height="100%" id="qw_img" src="' + evt.target.result + '" />';
+                        $('.preview').attr('src' , evt.target.result);
+                    }
+                    reader.readAsDataURL(file.files[0]);
+                }else{
+                    // prevDiv.innerHTML = '<div class="img" style="filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src=\'' + file.value + '\'"></div>';
+                    $('.preview').attr('src' , file.value);
+                }
+            }
+        </script>
+
+        <div class="row" >
+            <div class="col-md-1 col-md-offset-2"></div>
+            <div class="col-md-8 col-md-offset-3 row" style="height: 40px">
+                <div class="col-md-3 xleft"><h2>正文：</h2></div>
+                <div class="col-md-9"><p style="line-height: 40px">随便写点什么啊</p></div>
+            </div>
+        </div>
+        <div class="row" >
+            <div class="col-md-1 col-md-offset-2"></div>
+            <div class="col-md-8 col-md-offset-3 row">
+                <script id="editor" type="text/plain" style="width:1024px;height:500px;"></script>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-2"></div>
+            <div class="col-md-5 col-md-offset-3 row" style="height: 40px">
+                <button type="button" class="btn btn-primary btn-lg btn-block" onclick="submit()">提 　 　 　交</button>
+            </div>
+        </div>
+      </form>
+    </div>
+
+</body>
+
+<script type="text/javascript">
+    //实例化编辑器
+    var ue = UE.getEditor('editor');
+
+    function submit(){
+        alert(1);
+    }
+</script>
+</html>
