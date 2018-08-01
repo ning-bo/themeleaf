@@ -44,4 +44,11 @@ public class LanguageController {
 
         languageJPA.save(languageEntity);
     }
+
+    /**
+     * test
+     */
+    public void test(){
+
+    }
 }
