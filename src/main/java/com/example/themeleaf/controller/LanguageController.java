@@ -45,8 +45,6 @@ public class LanguageController {
         languageJPA.save(languageEntity);
     }
 
-    public String asd(){
-        return "";
-    }
+
 
 }
