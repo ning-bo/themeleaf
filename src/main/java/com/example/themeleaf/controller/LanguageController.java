@@ -46,7 +46,7 @@ public class LanguageController {
     }
 
     public String asd(){
-        return "2";
+        return "3";
     }
 
 }
